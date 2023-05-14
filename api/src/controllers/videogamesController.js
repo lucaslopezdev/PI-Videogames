@@ -7,7 +7,7 @@ const { API_KEY } = process.env;
 
 const URL_BASE = `https://api.rawg.io/api/games?key=${API_KEY}`;
 
-
+// Filtra todos los datos que no queremos de un array de objetos
 const cleanVideogame = (arr) => 
   arr.map((elem) => {
     return{
@@ -23,6 +23,7 @@ const cleanVideogame = (arr) =>
     }
   });
 
+// Obtiene un videojuego a traves de params
 const getVideogameById = async ( idVideogame, source ) => {
   const buildUrl = `https://api.rawg.io/api/games/${idVideogame}?key=${API_KEY}`;
   
@@ -49,6 +50,7 @@ const getVideogameById = async ( idVideogame, source ) => {
   return videogameFiltered;
 }
 
+// obtiene todos los videojuegos, de DB y API
 const getAllVideogames = async () => {
   // buscar en db
   const dbVideogames = await Videogame.findAll();
