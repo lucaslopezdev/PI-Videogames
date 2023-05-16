@@ -14,7 +14,7 @@ const cleanVideogame = (arr) =>
       id: elem.id,
       name: elem.name,
       description: elem.description,
-      platforms: elem.platforms,
+      platforms: elem.platforms.map(platform => platform.platform.name),
       background_image: elem.background_image,
       released: elem.released,
       rating: elem.rating,
@@ -43,7 +43,7 @@ const getVideogameById = async ( idVideogame, source ) => {
     description: videogame.description,
     platforms: videogame.platforms.map(platform => platform.platform.name),
     background_image: videogame.background_image,
-    genres: videogame.genres.map((g)=> g.name),
+    genres: videogame.genres.map((genre)=> genre.name),
     released: videogame.released,
     rating: videogame.rating
   };
@@ -62,5 +62,42 @@ const getAllVideogames = async () => {
   // Unificar
   return [...dbVideogames, ...apiVideogames];
 };
+
+// crea un nuevo videojuego
+const newVideogame = async (name, description, platforms, background_image, released, rating, genre) => {
+  if(
+    !name ||
+    !description ||
+    !platforms ||
+    !background_image ||
+    !released ||
+    !rating ||
+    !genre ||
+    genre.length == 0
+  ){
+    throw Error('Missing data');
+  } else {
+    const [newGame, created] = await Videogame.findOrCreate({
+      where: {name: name},
+      defaults: {
+        name,
+        description,
+        platforms,
+        background_image: background_image,
+        released,
+        rating
+      }
+    });
+
+    genre.forEach(async (element) => {
+      let findDbGenres = await Genres.findAll({ where: {name: element }});
+      await newGame.addGenres(findDbGenres);
+    })
+
+    if(created){
+      
+    }
+  }
+}
 
 module.exports = { getAllVideogames,  getVideogameById};
