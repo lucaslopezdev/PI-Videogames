@@ -30,13 +30,10 @@ const getVideogameById = async ( idVideogame, source ) => {
   const videogame =
   source === 'api'
   ? (await axios.get(buildUrl)).data
-  : await Videogame.findByPk(idVideogame,
-    {
-      include: {
-        model: Genres,
-        attributes: ['title']
-      }
-    });
+  : await Videogame.findByPk(idVideogame);
+
+  if(source !== 'api') return videogame;
+  
   videogameFiltered = {
     id: videogame.id,
     name: videogame.name,
