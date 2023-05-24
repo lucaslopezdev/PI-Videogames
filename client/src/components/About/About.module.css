@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.about {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  min-width: 300px;
+  width: 99vw;
+  background-color: rgb(155, 86, 46);
+  flex-wrap: wrap;
+  font-family: 'Among';
+  letter-spacing: .5rem;
+  font-size: 1.5rem;
+  overflow-x: hidden;
+  background-image: url('../../assets/among-home.jpg');
+  background-repeat: no-repeat;
+  background-size: center;
+  background-attachment: fixed;
+}
+
+.button {
+  cursor: pointer;
+  width: 20vw;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  font-size: 1.5rem;
+  font-family: 'Among';
+  font-weight: bold;
+  letter-spacing: 1rem;
+}
+
+.title {
+  padding: 1rem;
+  background-color: #572306;
+  border-radius: 10px;
+  color: white;
+}
+
+.subtitle {
+  background-color: rgba(252, 200, 176, 0.514);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.img {
+  width: 50vw;
+  margin: 0 100vw;
+  min-width: 300px;
+  border-radius: 40px;
+  transition: all 400ms ease;
+}
+
+.img:hover {
+  transform: scale(1.05);
+  transition-duration: .4s;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  width: 50vw;
+  background-color: rgba(252, 200, 176, 0.514);
+  border-radius: 2rem;
+  padding: 2rem;
+}
+
+.links > a {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.icon {
+  width: 10vw;
+  transition: all 400ms ease;
+}
+
+.icon:hover {
+  transform: translateY(-7%)
+}
+

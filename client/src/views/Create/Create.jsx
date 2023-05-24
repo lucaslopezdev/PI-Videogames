@@ -49,7 +49,7 @@ const Create = () => {
     description: "",
     rating: 0,
     released: "",
-    genre: [],
+    genres: [],
     platforms: [],
   });
 
@@ -63,7 +63,7 @@ const Create = () => {
     description: "",
     released: "",
     rating: 0,
-    genre: [],
+    genres: [],
     platforms: [],
   });
 
@@ -96,9 +96,9 @@ const Create = () => {
       errors.released = "Released data is required";
     } else errors.released = "";
 
-    if (!data.genre.length) {
-      errors.genre = "At least one genre is required";
-    } else errors.genre = "";
+    if (!data.genres.length) {
+      errors.genres = "At least one genre is required";
+    } else errors.genres = "";
 
     if (!data.platforms.length) {
       errors.platforms = "At least one platform is required";
@@ -116,9 +116,10 @@ const Create = () => {
       !error.description &&
       !error.rating &&
       !error.released &&
-      !error.genre &&
+      !error.genres &&
       !error.platforms
     ) {
+      console.log(form);
       dispatch(createVideoGame(form));
       alert("Videogame created successfully");
 
@@ -128,7 +129,7 @@ const Create = () => {
         description: "",
         released: "",
         rating: 0,
-        genre: [],
+        genres: [],
         platforms: [],
       });
     }
@@ -147,8 +148,7 @@ const Create = () => {
     event.preventDefault();
     if (
       event.target.value &&
-      event.target.value !==
-        form.platforms.find((platform) => platform === event.target.value)
+      !form.platforms.includes(event.target.value)
     ) {
       setForm({ ...form, platforms: [...form.platforms, event.target.value] });
     }
@@ -157,8 +157,9 @@ const Create = () => {
   //Click de platforms
   const clickPlatformsHandler = (event) => {
     event.preventDefault();
+    const platformToRemove = event.target.textContent;
     const platformsClick = form.platforms.filter(
-      (platform) => platform !== event.target.value
+      (platform) => platform !== platformToRemove
     );
     setForm({ ...form, platforms: platformsClick });
   };
@@ -167,11 +168,11 @@ const Create = () => {
   const genresCheckHandler = (event) => {
     const genreValue = event.target.value;
     if (event.target.checked) {
-      setForm({ ...form, genre: [...form.genre, genreValue] });
+      setForm({ ...form, genres: [...form.genres, genreValue] });
     } else {
       setForm({
         ...form,
-        genre: form.genre.filter((genre) => genre !== genreValue),
+        genres: form.genres.filter((genre) => genre !== genreValue),
       });
     }
   };
@@ -183,8 +184,8 @@ const Create = () => {
   };
 
   return (
-    <div>
-      <div className={style.create}>
+    <div className={style.container}>
+      <div className={`${style.create} ${style["full-screen-bg"]}`}>
         <Link to="/home">
           <button className={style.button}>Home</button>
         </Link>
@@ -192,9 +193,9 @@ const Create = () => {
 
       <div className={style.form}>
         <form onSubmit={submitHandler}>
-          <h1>Create your own Videogame</h1>
+          <h1 className={style.title}>Create your own Videogame</h1>
           <div>
-            <label>Name: </label>
+            <label><b>Name: </b></label>
             <input
               type="text"
               className={style.inputs}
@@ -205,7 +206,7 @@ const Create = () => {
             {error.name && <span className={style.error}>{error.name}</span>}
           </div>
           <div>
-            <label>Image URL: </label>
+            <label><b>Image URL: </b></label>
             <input
               type="text"
               className={style.inputs}
@@ -218,7 +219,7 @@ const Create = () => {
             )}
           </div>
           <div>
-            <label>Description: </label>
+            <label><b>Description: </b></label>
             <input
               type="text"
               className={style.inputs}
@@ -231,7 +232,7 @@ const Create = () => {
             )}
           </div>
           <div>
-            <label>Rating: </label>
+            <label><b>Rating: </b></label>
             <input
               type="range"
               min="0"
@@ -246,7 +247,7 @@ const Create = () => {
             )}
           </div>
           <div>
-            <label>Released Date:</label>
+            <label><b>Released Date: </b></label>
             <input
               type="date"
               onChange={changeHandler}
@@ -258,20 +259,19 @@ const Create = () => {
             )}
           </div>
           <div>
-            <label>Genres: </label>
-            {error.genre && <span className={style.error}>{error.genre}</span>}
-            <div className={style.genresContainer}>
+            <label><b>Genres: </b></label>
+            {error.genres && <span className={style.error}>{error.genres}</span>}
+            <div className={style.genrescontainer}>
               {genres.map((element) => {
                 return (
-                  <div>
-                    {" "}
+                  <div key={element}>
                     <input
                       type="checkbox"
                       onChange={genresCheckHandler}
                       value={element}
                       name="genres"
                     />
-                    {element}{" "}
+                    {element}
                   </div>
                 );
               })}
@@ -297,7 +297,7 @@ const Create = () => {
               {form.platforms.map((element, index) => {
                 return (
                   <button
-                    className={style.button}
+                    className={style.buttonf}
                     key={index}
                     value={element}
                     onClick={clickPlatformsHandler}
@@ -308,7 +308,7 @@ const Create = () => {
               })}
             </div>
           </div>
-          <button className={style.createButton} type="submit">
+          <button className={style.createbutton} type="submit">
             Create
           </button>
         </form>

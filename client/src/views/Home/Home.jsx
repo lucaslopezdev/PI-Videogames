@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import NavBar from "../../components/NavBar/NavBar";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
+import style from "./Home.module.css";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import { getAllVideogames, getAllGenres, backHome } from "../../redux/actions";
 import Paging from "../../components/Paging/Paging";
-import NavBar from "../../components/NavBar/NavBar";
-import style from "./Home.module.css";
 
 const Home = () => {
   const videogames = useSelector((state) => state.videogames);
@@ -29,11 +29,12 @@ const Home = () => {
     setCurrentPage(numberPage);
   };
   const next = () => {
-    if (lastIndexVideogames > videogames.length)
-      return setCurrentPage(currentPage + 1);
+    if (lastIndexVideogames > videogames.length) return;
+    setCurrentPage(currentPage + 1);
   };
   const prev = () => {
-    if (firstIndexVideogames < 1) return setCurrentPage(currentPage - 1);
+    if (firstIndexVideogames < 1) return;
+    setCurrentPage(currentPage - 1);
   };
 
   return (

@@ -1,13 +1,14 @@
 import {
-  GET_ALL_VIDEOGAMES,//
-  GET_ALL_GENRES,//
-  SEARCH_BY_NAME,//
-  GET_BY_DETAIL,//
+  GET_ALL_VIDEOGAMES,
+  GET_ALL_GENRES,
+  SEARCH_BY_NAME,
+  GET_BY_DETAIL,
   RESET_DETAIL,
   GENRE_FILTER,
   ORIGIN_FILTER,
   FILTER_BY_ORDER,
   FILTER_BY_RATING,
+  CREATE_VIDEOGAME,
 } from "./actions";
 
 const initialState = {
@@ -32,6 +33,11 @@ const rootReducer = (state = initialState, action) => {
         genres: action.payload,
       };
 
+    case CREATE_VIDEOGAME:
+      return {
+        ...state,
+      };
+
     case SEARCH_BY_NAME:
       return {
         ...state,
@@ -52,7 +58,7 @@ const rootReducer = (state = initialState, action) => {
 
     case GENRE_FILTER:
       const filteredGames = state.copyGames.filter((game) =>
-        game.genres.includes(action.payload)
+        game.genres?.includes(action.payload)
       );
 
       return {
@@ -63,25 +69,16 @@ const rootReducer = (state = initialState, action) => {
     case ORIGIN_FILTER:
       if ("api" === action.payload) {
         const filterApi = state.videogames.filter(
-          (game) => game.createdVideogame !== true
+          (vg) => vg.createdVideoGame !== true
         );
-        return {
-          ...state,
-          videogames: filterApi,
-        };
+        return { ...state, videogames: filterApi };
       } else if ("created" === action.payload) {
         const filterDb = state.videogames.filter(
-          (game) => game.createdVideogame === true
+          (vg) => vg.createdVideoGame === true
         );
-        return {
-          ...state,
-          videogames: filterDb,
-        };
+        return { ...state, videogames: filterDb };
       } else {
-        return {
-          ...state,
-          videogames: state.copyGames,
-        };
+        return { ...state, videogames: state.copyGames };
       }
 
     case FILTER_BY_ORDER:

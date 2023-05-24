@@ -10,4 +10,20 @@
 
 .button {
   font-family: 'Among';
+  padding: 1rem;
+  font-size: 10vw;
+  transition: all 400ms ease;
+  background-color: rgba(185, 16, 16, 0.945);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  -webkit-box-shadow: 15px 17px 29px 0px rgba(0,0,0,0.77);
+  -moz-box-shadow: 15px 17px 29px 0px rgba(0,0,0,0.77);
+  box-shadow: 15px 17px 29px 0px rgba(0,0,0,0.77);
+}
+
+.button:hover {
+  transform: scale(1.1);
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-duration: .4s;
 }

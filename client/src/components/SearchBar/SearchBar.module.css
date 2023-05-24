@@ -1,8 +1,14 @@
+
+
 .button {
-  border-radius: 8px;
+  border-radius: 0px 10px 10px 0px;
+  padding: 6px;
+  border: none;
+  background-color: #ccc;
 }
 
 .input {
-  border-radius: 2px;
+  border-radius: 10px 0px 0px 10px;
   border: none;
+  padding: 6px
 }

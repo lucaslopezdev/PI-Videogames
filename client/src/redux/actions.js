@@ -54,6 +54,7 @@ export const createVideoGame = (form) => {
   return async function (dispatch) {
     const URL = "http://localhost:3001/videogames";
     const postVideogame = await axios.post(URL, form);
+    console.log(form);
     dispatch({ type: CREATE_VIDEOGAME, payload: postVideogame.data });
   };
 };

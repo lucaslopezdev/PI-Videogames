@@ -1,0 +1,135 @@
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.create {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.title {
+  margin-bottom: 1rem;
+  padding: .5rem;
+  background-color: rgba(81, 198, 202, 0.541);
+  border-radius: 40px;
+}
+
+.full-screen-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url("../../assets/among-crewmate.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.form {
+    display: flex;
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    font-style: normal;
+    background-color: rgba(22, 71, 75, .7);
+    width: fit-content;
+    margin: 100px auto;
+    padding: 30px;
+    border-radius: 25px;
+    justify-content: center;
+}
+
+.form input {
+  margin-bottom: 1rem;
+}
+
+.inputs {
+  border-radius: 15px;
+  border-color: #ffffff;
+}
+
+.genrescontainer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 5px
+
+}
+
+.platforms {
+  
+    border-radius: 25px;
+    border: none;
+    border-width: 5px 5px 5px 5px;
+    margin: 20px auto;
+    width: 250px;
+    height: 70px;
+
+}
+
+.button {
+  z-index: 2;
+  position: absolute;
+  left: 47%;
+  top: 20px;
+  cursor: pointer;
+  background: rgb(251, 18, 18);
+  border-radius: 40px;
+  border: 2px solid #fff;
+  padding: 10px 30px; 
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Pretendo', sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  letter-spacing: 1px;
+}
+
+  .createbutton {
+    background: rgb(251, 18, 18);
+    margin: 1rem;
+    border-radius: 40px;
+    border: 2px solid white;
+    padding: 10px 50px; 
+      color: #fff;
+    font-size: 15px;
+    font-family: 'Pretendo', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    letter-spacing: 1px;
+    transition: all 400ms ease;
+  }
+
+.createbutton:hover{
+  transform: scale(1.05);
+  transition-duration: .4s;
+}
+
+.error {
+  position: absolute;
+  font-weight: bold;
+  font-size: 1rem;
+  color: rgb(243, 26, 26);
+  -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+  margin-left: 10px;
+  letter-spacing: 1px;
+}
+
+  .buttonf {
+    background-color: #fff;
+    font-size: 15px;
+    color: black;
+    margin: 1rem;
+    border-radius: 7px;
+    border: none;
+
+  }

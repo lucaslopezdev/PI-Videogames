@@ -14,7 +14,6 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   const handleFilterOrigin = (event) => {
-    event.preventDefault();
     dispatch(filterByOrigin(event.target.value));
   };
 
@@ -57,19 +56,20 @@ const NavBar = () => {
           </button>
 
           <select
+            defaultValue="0"
+            name=""
+            id="orderByOrigin"
+            className={style.select}
             onChange={(event) => {
               handleFilterOrigin(event);
             }}
-            defaultValue="0"
-            className={style.select}
-            id="1"
           >
             <option disabled value="0">
-              FILTER BY ORIGIN
+              Order by Origin
             </option>
-            <option value="All">ALL</option>
-            <option value="Created">CREATED</option>
-            <option value="API">API</option>
+            <option value="all">All Videogames</option>
+            <option value="created">Created Videogames</option>
+            <option value="api">API Videogames</option>
           </select>
 
           <select
@@ -99,7 +99,7 @@ const NavBar = () => {
             className={style.select}
             id="3"
           >
-            <option disable value="0">
+            <option disabled value="0">
               ORDER BY NAME
             </option>
             <option value="a-z">Name (A-Z)</option>t

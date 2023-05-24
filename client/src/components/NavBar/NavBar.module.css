@@ -2,13 +2,13 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: red;
+  background-color: rgb(66, 120, 141);
 }
 
 .mainContainer {
   display: flex;
-  background-color: blue;
-  padding: 1rem;
+  background-color: rgb(66, 120, 141);
+  padding: 2rem;
   justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 2rem;
@@ -16,9 +16,12 @@
 
 .buttonLink {
   border-radius: 8px;
+  padding: 6px;
+  
 }
 
 .select {
   border-radius: 8px;
   margin: 0 8px;
+  padding: 6px;
 }

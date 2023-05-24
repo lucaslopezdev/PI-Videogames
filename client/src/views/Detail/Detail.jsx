@@ -12,7 +12,7 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getByDetail(detailId));
-  }, [detailId]);
+  }, [dispatch, detailId]);
 
   const handleDelete = () => {
     dispatch(removeGame(detailId));
@@ -20,7 +20,7 @@ const Detail = () => {
   };
 
   return (
-    <div>
+    <div className={style.div}>
       <Link to="/home">
         <button>Home</button>
       </Link>

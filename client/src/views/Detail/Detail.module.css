@@ -1,0 +1,31 @@
+.div {
+  background-image: url("../../assets/among-crewmate.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
+.img {
+  width: 50vw;
+}
+
+.text {
+  background-color: #555;
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem;
+  color: white;
+
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 50%; /* ajustar la anchura del elemento que deseas centrar */
+  margin: auto;
+  background-image: url('../../assets/among-crewmate.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}

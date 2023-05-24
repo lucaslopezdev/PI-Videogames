@@ -21,32 +21,29 @@ export const Paging = ({
           onClick={() => {
             prev();
           }}
-          className={style.button}
+          className={style.butt}
         >
           Prev
         </button>
         {numberPage &&
-          numberPage.map((number) => {
-            return (
-              <div className={style.div} key={number}>
-                <button
-                  onClick={() => paging(number)}
-                  className={`${style.prueba} ${
-                    currentPage === number
-                      ? style.currentPage
-                      : style.notCurrent
-                  }`}
-                >
-                  {number}
-                </button>
-              </div>
-            );
-          })}
+          numberPage.map((number) => (
+            <div className={style.liNumber} key={number}>
+              <button
+                onClick={() => paging(number)}
+                className={`${style.prueba} ${
+                  currentPage === number ? style.currentPage : style.notCurrent
+                }`}
+              >
+                {" "}
+                {number}{" "}
+              </button>
+            </div>
+          ))}
         <button
           onClick={() => {
             next();
           }}
-          className={style.button}
+          className={style.butt}
         >
           Next
         </button>
