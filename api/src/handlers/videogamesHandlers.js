@@ -2,9 +2,9 @@ const {
   getAllVideogames,
   getVideogameById,
   newVideogame,
+  videogameToDelete,
 } = require("../controllers/videogamesController");
 
-const { Videogame, Genres } = require("../db");
 
 const getVideogamesQuery = async (req, res) => {
   try {
@@ -73,4 +73,15 @@ const postVideogames = async (req, res) => {
   }
 };
 
-module.exports = { getVideogamesQuery, getVideogameParams, postVideogames };
+const deleteVideogame = async (req, res) => {
+  try {
+    const { idVideogame } = req.params;
+    const videoGame = await videogameToDelete(idVideogame);
+
+    res.status(200).json(videoGame)
+  } catch (error) {
+    res.status(400).json({error: error.message});
+  }
+};
+
+module.exports = { getVideogamesQuery, getVideogameParams, postVideogames, deleteVideogame };

@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getVideogamesQuery, getVideogameParams, postVideogames } = require('../handlers/videogamesHandlers')
+const { getVideogamesQuery, getVideogameParams, postVideogames, deleteVideogame } = require('../handlers/videogamesHandlers')
 
 
 const videogamesRouter = Router();
@@ -10,7 +10,7 @@ videogamesRouter.get('/:idVideogame', getVideogameParams);
 
 videogamesRouter.post('/', postVideogames)
 
-// videogamesRouter.delete('/:idVideogame', deleteVideogame)
+videogamesRouter.delete('/:idVideogame', deleteVideogame)
 
 
 module.exports = videogamesRouter;

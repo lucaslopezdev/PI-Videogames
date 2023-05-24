@@ -7,22 +7,6 @@ const { API_KEY } = process.env;
 
 const URL_BASE = `https://api.rawg.io/api/games?key=${API_KEY}`;
 
-// Filtra todos los datos que no queremos de un array de objetos
-const cleanVideogame = (arr) =>
-  arr.map((elem) => {
-    return {
-      id: elem.id,
-      name: elem.name,
-      description: elem.description,
-      platforms: elem.platforms.map((platform) => platform.platform.name),
-      background_image: elem.background_image,
-      released: elem.released,
-      rating: elem.rating,
-      createdVideogame: elem.createdVideogame || false,
-      genres: elem.genres.map((e) => e.name),
-    };
-  });
-
 // Obtiene un videojuego a traves de params
 const getVideogameById = async (idVideogame, source) => {
   const buildUrl = `https://api.rawg.io/api/games/${idVideogame}?key=${API_KEY}`;
@@ -47,14 +31,38 @@ const getVideogameById = async (idVideogame, source) => {
   return videogameFiltered;
 };
 
+const getVideogamesApi = async () => {
+  const games = [];
+
+  let URL_BASE = `https://api.rawg.io/api/games?key=${API_KEY}`;
+
+  for(let i = 0 ; i < 5 ; i++) {
+    let page = await axios.get(URL_BASE);
+    page.data?.results.forEach((element) => {
+      games.push({
+        id: element.id,
+        name: element.name,
+        description: element.description,
+        platforms: element.platform?.map((platform) => platform.platform.name) || [],
+        background_image: element.background_image,
+        released: element.released,
+        rating: element.rating,
+        genres: element.genres?.map((genre) => genre.name) || [],
+        createdVideoGame: false,
+      });
+    });
+    URL_BASE = page.data.next;
+  }
+  return games;
+};
+
 // obtiene todos los videojuegos, de DB y API
 const getAllVideogames = async () => {
   // buscar en db
   const dbVideogames = await Videogame.findAll();
   // buscar en api
-  const apiVideogamesRaw = (await axios.get(`${URL_BASE}`)).data.results;
 
-  const apiVideogames = cleanVideogame(apiVideogamesRaw);
+  const apiVideogames = await getVideogamesApi();
 
   // Unificar
   return [...dbVideogames, ...apiVideogames];
@@ -97,4 +105,15 @@ const newVideogame = async (
   }
 };
 
-module.exports = { getAllVideogames, getVideogameById, newVideogame };
+const videogameToDelete = async (idVideogame) => {
+  const getVideogame = await Videogame.findByPk(idVideogame);
+
+  if( getVideogame){
+    getVideogame.destroy();
+    return "Deleted Videogame";
+  } else {
+    throw Error("Videogame not found")
+  }
+};
+
+module.exports = { getAllVideogames, getVideogameById, newVideogame, videogameToDelete };
