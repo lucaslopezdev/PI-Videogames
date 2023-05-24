@@ -1,0 +1,6 @@
+.paging {
+  display: flex;
+  justify-content: center;
+  gap: .4rem;
+  padding: 1rem;
+}

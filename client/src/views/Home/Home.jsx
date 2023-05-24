@@ -37,7 +37,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className={style.home}>
       <NavBar />
       <div className={style.paging}>
         <Paging

@@ -1,0 +1,24 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: red;
+}
+
+.mainContainer {
+  display: flex;
+  background-color: blue;
+  padding: 1rem;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.buttonLink {
+  border-radius: 8px;
+}
+
+.select {
+  border-radius: 8px;
+  margin: 0 8px;
+}

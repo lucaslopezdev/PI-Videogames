@@ -8,10 +8,11 @@ export const Paging = ({
   prev,
   currentPage,
 }) => {
-  const numberPage = Array.from(
-    { length: Math.floor(videogames / videogamesPerPages) + 1 },
-    (_, index) => index + 1
-  );
+  const numberPage = [];
+
+  for (let i = 0; i <= Math.floor(videogames / videogamesPerPages); i++) {
+    numberPage.push(i + 1);
+  }
 
   return (
     <nav>

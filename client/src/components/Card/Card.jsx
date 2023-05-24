@@ -1,9 +1,6 @@
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 
-// Debe mostrar la info de cada usuario mapeado, pero ademas,
-// darnos un link para ir al detalle del usuario en cuestion
-
 const Card = ({ name, genres, background_image, id, rating }) => {
   return (
     <Link className={style.link} to={`/detail/${id}`}>
@@ -15,7 +12,7 @@ const Card = ({ name, genres, background_image, id, rating }) => {
           <div className={style.box}>
             <h2 className={style.name}>{name}</h2>
           </div>
-          <h2>GENRES: {genres.join(', ')}</h2>
+          <h2>GENRES: {genres.join(", ")}</h2>
           <h2>RATING: {rating}</h2>
         </div>
       </div>
